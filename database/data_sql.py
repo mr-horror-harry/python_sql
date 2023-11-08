@@ -15,3 +15,12 @@ def getTaskList():
     with connection:
         cursor_dataset = connection.execute("SELECT * FROM task_to_do")
         return cursor_dataset
+
+def deleteTable():
+    with connection:
+        connection.execute("DROP TABLE IF EXISTS task_to_do")
+        #to avoid the serial/auto increment error!
+        connection.execute("CREATE TABLE IF NOT EXISTS task_to_do (task TEXT, date TEXT)")
+
+def closeConn():
+    connection.close()
